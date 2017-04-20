@@ -41,8 +41,10 @@
       this.element = document.querySelector('#' + elementId);
     }
 
-    DOManipulator.prototype.replace = function(templateName) {
+    DOManipulator.prototype.replace = function(templateName, options) {
       if (!checkTemplateNames(templateName)) return;
+
+      this.element.innerHTML = '';
 
       Object.keys(this.templates).forEach((function(k) {
         if (k !== 'nodes') {
@@ -50,9 +52,11 @@
         }
       }).bind(this))
 
-      this.element.innerHTML = this[templateName];
+      var node = createNode(this.templates[templateName], options)
 
-      this.nodes[templateName] = this.element.firstElementChild;
+      this.element.appendChild(node);
+
+      this.nodes[templateName] = node;
 
       return this.nodes[templateName];
     }
