@@ -4,11 +4,16 @@
 (function() {
   // Constructor
 
-  function Login() {}
+  function LoginView() {
+    EventEmitter.call(this);
+  }
+
+  LoginView.prototype = Object.create(EventEmitter.prototype);
+  LoginView.prototype.constructor = LoginView;
 
   // Public methods
 
-  Login.prototype.create = function() {
+  LoginView.prototype.display = function() {
     this.element = Templates.getInstance().replace('login');
 
     this.form = this.element.querySelector('#login');
@@ -32,11 +37,12 @@
         email: email,
         password: password
       },
-      success: function(response) {
+      success: (function(response) {
         errorMsg.innerText = '';
         var json = JSON.parse(response);
-        console.log(json.id);
-      },
+        Config.token = json.token;
+        this.emit('logged-in');
+      }).bind(this),
       error: function(err) {
         var json = JSON.parse(err);
         errorMsg.innerText = json.message;
@@ -46,5 +52,5 @@
 
   // Instantiation
 
-  this.Login = new Login();
+  this.LoginView = new LoginView();
 })();

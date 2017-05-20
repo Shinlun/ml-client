@@ -26,6 +26,11 @@
           '</div>' +
           '<div id="calendar">' +
             'Insert calendar here' +
+          '</div>',
+
+        event:
+          '<div class="event">' +
+            '{{ event.title }}: {{ event.author.firstname }}' +
           '</div>'
       };
 
@@ -180,6 +185,20 @@
       var element = document.createElement(options.tag);
       if (options.className) element.className = options.className;
       if (options.id) element.id = options.id;
+
+      // Template pattern replacement
+      var match = html.match(/\{\{ ?[a-zA-Z0-9\.]+ ?}}/g);
+      if (match) {
+        match.forEach(function(pattern) {
+          var obj = pattern.replace(/\{\{ ?/g, '').replace(/ ?}}/g, '')
+          var split = obj.split('.');
+          var opt = options[split[0]];
+          for (var i = 1; i < split.length; i++) {
+            opt = opt[split[i]];
+          }
+          html = html.replace(pattern, opt);
+        })
+      }
 
       element.innerHTML = html;
 
