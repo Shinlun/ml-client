@@ -12,8 +12,8 @@
 
       this.templates = {
         login:
-          '<p class="error"></p>' +
-          '<form id="login">' +
+          '<p class="error col-xs-12"></p>' +
+          '<form id="login" class="col-xs-12">' +
             '<p><input type="email" placeholder="email" /></p>' +
             '<p><input type="password" placeholder="password" /></p>' +
             '<p><input type="submit" value="Ok" /></p>' +
@@ -24,14 +24,9 @@
             '<span>Date</span>' +
             '<span>View</span>' +
           '</div>' +
-          '<div id="calendar">' +
-            'Insert calendar here' +
-          '</div>',
+          '<div id="calendar"></div>',
 
-        event:
-          '<div class="event">' +
-            '{{ event.title }}: {{ event.author.firstname }}' +
-          '</div>'
+        event: '{{ event.title }}: {{ event.author.firstname }} {{event.author.lastname }}'
       };
 
       this.factory = document.createElement('span');
@@ -47,8 +42,6 @@
     }
 
     DOManipulator.prototype.replace = function(templateName, options) {
-      if (!checkTemplateNames(templateName)) return;
-
       this.element.innerHTML = '';
 
       Object.keys(this.templates).forEach((function(k) {
@@ -57,7 +50,7 @@
         }
       }).bind(this))
 
-      var node = createNode(this.templates[templateName], options)
+      var node = createNode(this.templates[templateName] ? this.templates[templateName] : templateName, options)
 
       this.element.appendChild(node);
 
@@ -91,8 +84,9 @@
     DOManipulator.prototype.appendTo = function(templateName1, templateName2, options) {
       if (!checkTemplateNames([templateName1, templateName2]) || !checkNodes(templateName1)) return;
 
-      var node = createNode(this.templates[templateName2], options);
-      this.nodes[templateName1].appendChild(node);
+      var templateOpts = options.template ? options.template : null;
+      var node = createNode(this.templates[templateName2], templateOpts);
+      (options.elementId ? this.nodes[templateName1].querySelector('#' + options.elementId) : this.nodes[templateName1]).appendChild(node);
 
       return node;
     }
@@ -183,7 +177,8 @@
       }, options);
 
       var element = document.createElement(options.tag);
-      if (options.className) element.className = options.className;
+      element.className = 'row';
+      if (options.className) element.className += ' ' + options.className;
       if (options.id) element.id = options.id;
 
       // Template pattern replacement

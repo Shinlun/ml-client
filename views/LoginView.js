@@ -6,6 +6,9 @@
 
   function LoginView() {
     EventEmitter.call(this);
+
+    this.title = 'Connexion';
+    this.path = '/login';
   }
 
   LoginView.prototype = Object.create(EventEmitter.prototype);

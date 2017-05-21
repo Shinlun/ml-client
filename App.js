@@ -1,5 +1,5 @@
 window.onload = function() {
-  // Login form
+  // Launching app
   Templates.getInstance().setElement('main');
-  LoginView.display();
+  MainController.init();
 };

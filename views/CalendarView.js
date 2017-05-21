@@ -7,6 +7,8 @@
   function CalendarView() {
     EventEmitter.call(this);
 
+    this.title = 'Calendrier';
+    this.path = '/calendar';
     this.events = [];
   }
 
@@ -20,7 +22,12 @@
 
     this.events.forEach(function(ev) {
       Templates.getInstance().appendTo('calendar', 'event', {
-        event: ev
+        elementId: 'calendar',
+        template: {
+          tag: 'div',
+          className: 'event',
+          event: ev
+        }
       })
     });
   }

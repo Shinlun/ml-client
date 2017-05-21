@@ -23,7 +23,7 @@
         }, this);
 
         if (cb) {
-          cb();
+          cb(response);
         }
       }).bind(this),
       error: function(err) {
@@ -35,9 +35,7 @@
 
   // Private methods
 
-  function bindEvents(instance) {
-
-  }
+  function bindEvents(instance) {}
 
   // Instantiation
 

@@ -4,32 +4,37 @@
     <meta charset="UTF-8">
     <title>ML Client</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style/bootstrap.min.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+
     <!-- Config -->
     <script src="./Config.js"></script>
 
     <!-- Libs & Tools-->
     <script src="./libs/simpleajax.min.js"></script>
     <script src="./tools/EventEmitter.js"></script>
+    <script src="./tools/NavManager.js"></script>
 
     <!-- Models -->
     <script src="./models/User.js"></script>
     <script src="./models/Event.js"></script>
-    <script src="tools/Templates.js"></script>
+    <script src="./tools/Templates.js"></script>
 
     <!-- Views -->
-    <script src="views/LoginView.js"></script>
-    <script src="views/CalendarView.js"></script>
+    <script src="./views/LoginView.js"></script>
+    <script src="./views/CalendarView.js"></script>
 
     <!-- Controllers -->
-    <script src="controllers/CalendarController.js"></script>
-    <script src="controllers/MainController.js"></script>
+    <script src="./controllers/CalendarController.js"></script>
+    <script src="./controllers/MainController.js"></script>
 
     <!-- App -->
     <script src="./App.js"></script>
 </head>
 <body>
 
-    <article id="main"></article>
+    <article id="main" class="container"></article>
 
 </body>
 </html>
