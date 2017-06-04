@@ -11,8 +11,6 @@
     this.path = '/calendar';
     this.happenings = [];
     this.date = new Date();
-
-    this.submitEventCb = submitEvent.bind(this);
   }
 
   CalendarView.prototype = Object.create(EventEmitter.prototype);
@@ -158,12 +156,10 @@
       day: day,
       year: this.date.getFullYear()
     });
-    this.currentDay = day;
 
     form.querySelector('#new-event-month').querySelectorAll('option')[this.date.getMonth()].setAttribute('selected', 'selected');
 
-    form.removeEventListener('submit', this.submitEventCb);
-    form.addEventListener('submit', this.submitEventCb);
+    form.addEventListener('submit', submitEvent.bind(this));
   };
 
   // Private methods

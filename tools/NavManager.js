@@ -7,6 +7,9 @@
   function NavManager() {
     window.onpopstate = function(e){
       if (e.state) {
+        if (!localStorage.getItem('token')) return;
+        if (localStorage.getItem('token') && e.state.view === 'LoginView') return;
+
         var view = window[e.state.view];
 
         if (view.deserialize && e.state.data) {
@@ -26,8 +29,12 @@
     window.history.pushState({
       view: getViewName(view),
       data: data
-    }, '', Config.rootUrl + view.path);
-  }
+    }, '', Config.rootUrl);
+  };
+
+  NavManager.prototype.clean = function() {
+
+  };
 
   // Private methods
 

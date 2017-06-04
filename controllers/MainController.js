@@ -10,6 +10,10 @@
   MainController.prototype.init = function() {
     if (this.initiated) return;
 
+    if (localStorage.getItem('token')) {
+      TopnavView.display();
+    }
+
     localStorage.getItem('token')
       ? CalendarController.init((function() {
           this.displayView(CalendarView);
@@ -33,6 +37,7 @@
 
   function bindEvents(instance) {
     LoginView.on('logged-in', function() {
+      TopnavView.display();
       CalendarController.init(function() {
         instance.displayView(CalendarView);
       });
@@ -43,6 +48,12 @@
         instance.displayView(CalendarView);
       });
     });
+
+    TopnavView.on('logged-out', function() {
+      NavManager.clean();
+      TopnavView.hide();
+      window.location = Config.rootUrl;
+    })
   }
 
   // Instantiation

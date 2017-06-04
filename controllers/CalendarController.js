@@ -59,7 +59,9 @@
       success: function(response) {
         var event = new Event(JSON.parse(response));
 
-        CalendarView.happenings.push(event);
+        if (event.date.getMonth() === CalendarView.date.getMonth()) {
+          CalendarView.happenings.push(event);
+        }
         CalendarView.display();
         CalendarView.showEvents(event.date.getDate());
       },

@@ -17,7 +17,9 @@
   // Public methods
 
   LoginView.prototype.display = function() {
-    this.element = Templates.getInstance().replace('login');
+    this.element = Templates.getInstance().replace('login', {
+      className: 'row login-form'
+    });
 
     this.form = this.element.querySelector('#login');
     this.form.querySelector('input').focus();

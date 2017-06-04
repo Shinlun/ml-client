@@ -13,11 +13,13 @@
       this.templates = {
         login:
           '<p class="error col-xs-12"></p>' +
-          '<form id="login" class="col-xs-12">' +
+          '<p class="col-xs-2">&nbsp;</p>' +
+          '<form id="login" class="col-xs-8">' +
             '<p><input type="email" placeholder="email" /></p>' +
             '<p><input type="password" placeholder="password" /></p>' +
             '<p><input type="submit" value="Ok" /></p>' +
-          '</form>',
+          '</form>' +
+          '<p class="col-xs-2">&nbsp;</p>',
 
         calendar:
           '<a class="control-link prev-month left fa fa-arrow-circle-left"></a>' +
@@ -89,7 +91,7 @@
             '<textarea id="new-event-description" placeholder="Description"></textarea>' +
             '<br/>' +
             '<input type="checkbox" id="new-event-recurring" />' +
-            '<label for="new-event-recurring">Répéter chaque année: </label>' +
+            '<label for="new-event-recurring">Répéter chaque année</label>' +
             '<br/>' +
             '<input type="submit" value="Créer" />' +
           '</form>'
