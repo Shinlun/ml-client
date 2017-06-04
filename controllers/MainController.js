@@ -10,9 +10,13 @@
   MainController.prototype.init = function() {
     if (this.initiated) return;
 
-    this.displayView(LoginView);
+    localStorage.getItem('token')
+      ? CalendarController.init((function() {
+          this.displayView(CalendarView);
+        }).bind(this))
+      : this.displayView(LoginView);
     this.initiated = true;
-  }
+  };
 
   MainController.prototype.displayView = function(view) {
     if (typeof view === 'string') view = window[view];
@@ -20,14 +24,21 @@
     if (!view.display) return;
 
     view.display();
-    /*NavManager.currentView = view;
-    NavManager.save();*/
-  }
+    var data = view.serialize ? view.serialize() : null;
+
+    NavManager.save(view, data);
+  };
 
   // Private methods
 
   function bindEvents(instance) {
     LoginView.on('logged-in', function() {
+      CalendarController.init(function() {
+        instance.displayView(CalendarView);
+      });
+    });
+
+    CalendarView.on('changed-date', function() {
       CalendarController.init(function() {
         instance.displayView(CalendarView);
       });

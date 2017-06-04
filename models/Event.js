@@ -10,10 +10,15 @@ function Event(data) {
     title: '',
     body: '',
     date: null,
+    recurring: false,
     created_at: null,
     updated_at: null,
     author: {}
   }, data);
+
+  if (options.date) {
+    options.date = new Date(options.date);
+  }
 
   Object.keys(options).forEach(function(key) {
     this[key] = options[key];

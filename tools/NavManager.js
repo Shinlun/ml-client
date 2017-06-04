@@ -7,21 +7,32 @@
   function NavManager() {
     window.onpopstate = function(e){
       if (e.state) {
-        Templates.getInstance().replace(e.state.html);
-        document.title = e.state.pageTitle;
+        var view = window[e.state.view];
+
+        if (view.deserialize && e.state.data) {
+          view.deserialize(e.state.data);
+        }
+
+        view.display();
+        document.title = view.title;
       }
     };
   }
 
-  NavManager.prototype.save = function() {
-    var data = {
-      html: Templates.getInstance().element.innerHTML,
-      pageTitle: this.currentView.title
-    };
+  // Public methods
 
-    Templates.getInstance().replace(data.html);
-    document.title = data.pageTitle;
-    window.history.pushState({ 'html': data.html, 'pageTitle': data.pageTitle }, '', location.origin + this.currentView.path);
+  NavManager.prototype.save = function(view, data) {
+    document.title = view.title;
+    window.history.pushState({
+      view: getViewName(view),
+      data: data
+    }, '', Config.rootUrl + view.path);
+  }
+
+  // Private methods
+
+  function getViewName(view) {
+    return view.constructor.toString().split('function ')[1].split('(')[0];
   }
 
   // Instantiation

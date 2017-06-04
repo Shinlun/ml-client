@@ -22,9 +22,9 @@ EventEmitter.prototype.off = function(eventName, fn) {
 }
 
 EventEmitter.prototype.emit = function(eventName, data) {
-  if (!this.events[ eventName ]) return;
+  if (!this.events[eventName]) return;
 
-  this.events[ eventName ].forEach(function (fn) {
+  this.events[eventName].forEach(function (fn) {
     fn(data);
   })
 }

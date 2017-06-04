@@ -43,7 +43,7 @@
       success: (function(response) {
         errorMsg.innerText = '';
         var json = JSON.parse(response);
-        Config.token = json.token;
+        localStorage.setItem('token', json.token);
         this.emit('logged-in');
       }).bind(this),
       error: function(err) {

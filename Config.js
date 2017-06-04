@@ -1,6 +1,20 @@
 Config = {
   mainElement: 'main',
   apiUrl: 'http://localhost:3000',
-  token: '',
-  rootUrl: 'file:///C:/Users/Ronan/Documents/Dev/ml/ml-client/index.html'// location.origin
+  rootUrl: location.origin
 };
+
+Months = [
+  'Janvier',
+  'Février',
+  'Mars',
+  'Avril',
+  'Mai',
+  'Juin',
+  'Juillet',
+  'Août',
+  'Septembre',
+  'Octobre',
+  'Novembre',
+  'Décembre'
+];
