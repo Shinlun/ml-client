@@ -8,6 +8,6 @@
   }
 
   this.formatDate = function(date) {
-    return new Date(date.getTime() + Math.abs(date.getTimezoneOffset()*60000));
+    return new Date(date.getTime() + Math.abs(date.getTimezoneOffset() * 60000));
   }
 })();
