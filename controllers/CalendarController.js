@@ -12,8 +12,8 @@
 
     var toMonth = now.getMonth() === 11 ? 1 : now.getMonth() + 1;
 
-    var from = new Date(now.getFullYear(), now.getMonth(), 1);
-    var to = new Date(now.getFullYear(), toMonth, 1);
+    var from = formatDate(new Date(now.getFullYear(), now.getMonth(), 1));
+    var to = formatDate(new Date(now.getFullYear(), toMonth, 1));
 
     SimpleAjax.request(Config.apiUrl + '/api/events?from=' + from.getTime() + '&to=' + to.getTime(), {
       method: 'GET',

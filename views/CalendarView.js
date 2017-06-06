@@ -193,7 +193,7 @@
     var month = document.querySelector('#new-event-month').value;
     var day = document.querySelector('#new-event-day').value;
 
-    var eventDate = new Date(parseInt(year), parseInt(month), parseInt(day));
+    var eventDate = formatDate(new Date(parseInt(year), parseInt(month), parseInt(day)));
 
     this.emit('create-event', {
       title: document.querySelector('#new-event-title').value,
