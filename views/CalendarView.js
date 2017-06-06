@@ -41,7 +41,7 @@
       for (var j = 0; j < 7; j++) {
         var cond = i === 0 && j < firstDay || x > lastDate;
         var nbEvents = this.happenings.filter(function(ev) {
-          return !cond && new Date(ev.date).getDate() === x;
+          return !cond && new Date(ev.date).getDate() === x && new Date(ev.date).getMonth() === this.date.getMonth();
         }).length;
 
         var isToday = this.date.getFullYear() === today.getFullYear()
