@@ -10,10 +10,10 @@
   CalendarController.prototype.init = function(cb) {
     var now = CalendarView.date;
 
-    var toMonth = now.getMonth() === 11 ? 1 : now.getMonth() + 2;
+    var toMonth = now.getMonth() === 11 ? 1 : now.getMonth() + 1;
 
-    var from = new Date(now.getFullYear() + '-' + (now.getMonth() + 1) + '-01');
-    var to = new Date(now.getFullYear() + '-' + toMonth + '-01');
+    var from = new Date(now.getFullYear(), now.getMonth(), 1);
+    var to = new Date(now.getFullYear(), toMonth, 1);
 
     SimpleAjax.request(Config.apiUrl + '/api/events?from=' + from.getTime() + '&to=' + to.getTime(), {
       method: 'GET',

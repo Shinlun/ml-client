@@ -60,18 +60,18 @@
             '<span id="new-event-date">' +
               '<input type="number" min="1" max="31" value="{{ day }}" id="new-event-day" />' +
               '<select id="new-event-month">' +
-                '<option value="1">Janvier</option>' +
-                '<option value="2">Février</option>' +
+                '<option value="0">Janvier</option>' +
+                '<option value="1">Février</option>' +
                 '<option value="3">Mars</option>' +
-                '<option value="4">Avril</option>' +
-                '<option value="5">Mai</option>' +
-                '<option value="6">Juin</option>' +
-                '<option value="7">Juillet</option>' +
-                '<option value="8">Août</option>' +
-                '<option value="9">Septembre</option>' +
-                '<option value="10">Octobre</option>' +
-                '<option value="11">Novembre</option>' +
-                '<option value="12">Décembre</option>' +
+                '<option value="3">Avril</option>' +
+                '<option value="4">Mai</option>' +
+                '<option value="5">Juin</option>' +
+                '<option value="6">Juillet</option>' +
+                '<option value="7">Août</option>' +
+                '<option value="8">Septembre</option>' +
+                '<option value="9">Octobre</option>' +
+                '<option value="10">Novembre</option>' +
+                '<option value="11">Décembre</option>' +
               '</select>' +
               '<input type="text" value="{{ year }}" id="new-event-year" />' +
             '</span>' +
