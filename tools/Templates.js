@@ -265,9 +265,7 @@
     function createNode(html, options) {
       if (!instance) return;
 
-      options = Object.assign({
-        tag: 'section'
-      }, options);
+      options.tag = options.tag ? options.tag : 'section';
 
       var element = document.createElement(options.tag);
       element.className = options.className ? options.className : '';

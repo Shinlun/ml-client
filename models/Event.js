@@ -4,21 +4,17 @@
 function Event(data) {
   EventEmitter.call(this);
 
-  var options = Object.assign({
-    id: '',
-    type: '',
-    title: '',
-    body: '',
-    date: null,
-    recurring: false,
-    created_at: null,
-    updated_at: null,
-    author: {}
-  }, data);
+  var options = {};
 
-  if (options.date) {
-    options.date = new Date(options.date);
-  }
+  options.id = data.id ? data.id : '';
+  options.type = data.type ? data.type : '';
+  options.title = data.title ? data.title : '';
+  options.body = data.body ? data.body : '';
+  options.date = data.date ? new Date(data.date) : null;
+  options.recurring = data.recurring ? data.recurring : false;
+  options.created_at = data.created_at ? data.created_at : null;
+  options.updated_at = data.updated_at ? data.updated_at : null;
+  options.author = data.author ? data.author : {};
 
   Object.keys(options).forEach(function(key) {
     this[key] = options[key];
