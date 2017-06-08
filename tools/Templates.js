@@ -265,6 +265,7 @@
     function createNode(html, options) {
       if (!instance) return;
 
+      options = options ? options : {};
       options.tag = options.tag ? options.tag : 'section';
 
       var element = document.createElement(options.tag);
